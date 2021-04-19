@@ -43,7 +43,7 @@ function onCalculate() {
         clearMessages(discountMessageBox, messageBox);
 
         if (verifiedDiscountCode(userDiscountCode)) {
-            discountMessageBox.innerHTML = "È stato applicato uno sconto di $10."
+            discountMessageBox.innerHTML = "$10 discount applied."
             priceHere.textContent = finalPriceDiscount(finalPrice);
         } else {
             messageBox.innerHTML = "Your discount code is expired or invalid. <br> Please double check for typing errors."
