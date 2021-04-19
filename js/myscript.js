@@ -42,6 +42,7 @@ function onCalculate(event) {
     var discountBox = document.getElementById('coupon');
 
     var messageBox = document.getElementById('message-box');
+    var discountMessageBox = document.getElementById('discound-message');
 
     // salvo in una var il CODICE DISCOUNT inserito dall'utente 
     var userDiscountCode = discountBox.value.toUpperCase();
@@ -49,7 +50,7 @@ function onCalculate(event) {
     if (inputDetected(userDiscountCode)) {
 
         if (verifiedDiscountCode(userDiscountCode)) {
-
+            discountMessageBox.innerHTML = "È stato applicato uno sconto di $10."
             priceHere.textContent = finalPriceDiscount(finalPrice);
         } else {
             messageBox.innerHTML="Your discount code is expired or invalid. <br> Please check if you typed it correctly."
