@@ -5,13 +5,12 @@ window.addEventListener('load', function () {
     var calculateBtn = document.getElementById('button');
 
     calculateBtn.addEventListener('click', onCalculate);
-
 })
 
 // funzione che contiene il codice che verrà eseguito solo dopo il caricamento della pagina
 function onCalculate(event) {
 
-    event.preventDefault();
+    //event.preventDefault();
 
     // salvo gli elementi 'INGREDIENTS' in un "array"
     var arrayIngredients = document.querySelectorAll('.ingredient .ingredient-checkbox');
@@ -49,6 +48,8 @@ function onCalculate(event) {
 
     if (inputDetected(userDiscountCode)) {
 
+        clearMessages(discountMessageBox, messageBox);
+
         if (verifiedDiscountCode(userDiscountCode)) {
             discountMessageBox.innerHTML = "È stato applicato uno sconto di $10."
             priceHere.textContent = finalPriceDiscount(finalPrice);
@@ -60,10 +61,9 @@ function onCalculate(event) {
     } else {
 
         priceHere.textContent = finalPrice;
+        clearMessages(discountMessageBox, messageBox);
 
     }
-
-
 }
 
 // funzione che verifica se l'ingrediente [checkbox] è checked
@@ -110,4 +110,13 @@ function verifiedDiscountCode(discountCode) {
         }
     }
     return false;
+}
+
+
+// funzione che resetta i messaggi 
+function clearMessages(firstMsg, secondMsg) {
+
+    firstMsg.innerHTML = "";
+    secondMsg.innerHTML = "";
+
 }
