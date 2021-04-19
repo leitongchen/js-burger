@@ -13,7 +13,7 @@ function onCalculate(event) {
 
     event.preventDefault();
 
-    // salvo gli elementi 'ingredients' in un "array"
+    // salvo gli elementi 'INGREDIENTS' in un "array"
     var arrayIngredients = document.querySelectorAll('.ingredient .ingredient-checkbox');
 
     // salvo in una var ID per inserire prezzo nella pagina 
@@ -21,7 +21,8 @@ function onCalculate(event) {
 
 
     // array in cui pushare gli ingredienti checked
-    var arrayChosenIngredients = []
+    //var arrayChosenIngredients = []
+
     // variabile che contiene il calcolo del prezzo finale del burger
     var finalPrice = 50;
     for (var i = 0; i < arrayIngredients.length; i++) {
@@ -29,15 +30,38 @@ function onCalculate(event) {
 
         if (isChecked(singleIngredient)) {
 
-            arrayChosenIngredients.push(singleIngredient);
+            //arrayChosenIngredients.push(singleIngredient);
 
-            finalPrice += parseInt(singleIngredient.value); 
+            finalPrice += parseInt(singleIngredient.value);
         }
     }
 
-    priceHere.textContent = finalPrice;
-
+    //DISCOUNT 
     
+    // raggiungo lo spazio input dove l'user inserisce il prezzo
+    var discountBox = document.getElementById('coupon');
+
+    var messageBox = document.getElementById('message-box');
+
+    // salvo in una var il CODICE DISCOUNT inserito dall'utente 
+    var userDiscountCode = discountBox.value.toUpperCase();
+
+    if (inputDetected(userDiscountCode)) {
+
+        if (verifiedDiscountCode(userDiscountCode)) {
+
+            priceHere.textContent = finalPriceDiscount(finalPrice);
+        } else {
+            messageBox.innerHTML="Your discount code is expired or invalid. <br> Please check if you typed it correctly."
+            priceHere.textContent = finalPrice;
+        }
+
+    } else {
+
+        priceHere.textContent = finalPrice;
+
+    }
+
 
 }
 
@@ -49,4 +73,40 @@ function isChecked(ingredient) {
     }
     return true;
 
+}
+
+// funzione che verifica se è stato inserito un codice sconto 
+function inputDetected(textSpace) {
+
+    if (textSpace !== "") {
+        return true;
+    }
+    return false;
+}
+
+// function che calcola lo sconto con l'inserimento del coupon
+// sconto di 10$ 
+function finalPriceDiscount(inizialAmount) {
+
+    var finalPrice = inizialAmount - 10;
+
+    return finalPrice; 
+
+}
+
+//funzione che verifica il discount code con quelli accettati nell'array
+function verifiedDiscountCode(discountCode) {
+
+    // array che contiene i DISCOUNT COUPONS ACCETTATI
+    var discountCoupons = ['APRILEDOLCEDORMIRE', 'HAMBURGERBUONITUTTOLANNO', 'ABOLIAMOLASENAPE', 'MAIOMESETUTTI I MESI']
+
+    for (var i=0; i<discountCoupons.length; i++) {
+        var acceptedCode = discountCoupons[i];
+
+        if (discountCode === acceptedCode) {
+
+            return true;
+        }
+    }
+    return false; 
 }
