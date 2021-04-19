@@ -181,6 +181,17 @@
   .submit {
     text-align: center;
   }
+
+  #message-box {
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 14px;
+
+    color: #d33359;
+
+    margin-top: 20px;
+  }
   
   /* footer */
   footer {

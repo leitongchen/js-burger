@@ -15,9 +15,15 @@ function onCalculate(event) {
 
     // salvo gli elementi 'INGREDIENTS' in un "array"
     var arrayIngredients = document.querySelectorAll('.ingredient .ingredient-checkbox');
-
     // salvo in una var ID per inserire prezzo nella pagina 
     var priceHere = document.getElementById('price');
+
+
+    // raggiungo lo spazio input dove l'user inserisce il prezzo
+    var discountBox = document.getElementById('coupon');
+
+    var messageBox = document.getElementById('message-box');
+    var discountMessageBox = document.getElementById('discound-message');
 
 
     // array in cui pushare gli ingredienti checked
@@ -36,13 +42,7 @@ function onCalculate(event) {
         }
     }
 
-    //DISCOUNT 
-    
-    // raggiungo lo spazio input dove l'user inserisce il prezzo
-    var discountBox = document.getElementById('coupon');
-
-    var messageBox = document.getElementById('message-box');
-    var discountMessageBox = document.getElementById('discound-message');
+    //DISCOUNT
 
     // salvo in una var il CODICE DISCOUNT inserito dall'utente 
     var userDiscountCode = discountBox.value.toUpperCase();
@@ -53,7 +53,7 @@ function onCalculate(event) {
             discountMessageBox.innerHTML = "È stato applicato uno sconto di $10."
             priceHere.textContent = finalPriceDiscount(finalPrice);
         } else {
-            messageBox.innerHTML="Your discount code is expired or invalid. <br> Please check if you typed it correctly."
+            messageBox.innerHTML = "Your discount code is expired or invalid. <br> Please double check for typing errors."
             priceHere.textContent = finalPrice;
         }
 
@@ -91,7 +91,7 @@ function finalPriceDiscount(inizialAmount) {
 
     var finalPrice = inizialAmount - 10;
 
-    return finalPrice; 
+    return finalPrice;
 
 }
 
@@ -101,7 +101,7 @@ function verifiedDiscountCode(discountCode) {
     // array che contiene i DISCOUNT COUPONS ACCETTATI
     var discountCoupons = ['APRILEDOLCEDORMIRE', 'HAMBURGERBUONITUTTOLANNO', 'ABOLIAMOLASENAPE', 'MAIOMESETUTTI I MESI']
 
-    for (var i=0; i<discountCoupons.length; i++) {
+    for (var i = 0; i < discountCoupons.length; i++) {
         var acceptedCode = discountCoupons[i];
 
         if (discountCode === acceptedCode) {
@@ -109,5 +109,5 @@ function verifiedDiscountCode(discountCode) {
             return true;
         }
     }
-    return false; 
+    return false;
 }
