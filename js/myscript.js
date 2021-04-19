@@ -8,9 +8,7 @@ window.addEventListener('load', function () {
 })
 
 // funzione che contiene il codice che verrà eseguito solo dopo il caricamento della pagina
-function onCalculate(event) {
-
-    //event.preventDefault();
+function onCalculate() {
 
     // salvo gli elementi 'INGREDIENTS' in un "array"
     var arrayIngredients = document.querySelectorAll('.ingredient .ingredient-checkbox');
@@ -20,13 +18,10 @@ function onCalculate(event) {
 
     // raggiungo lo spazio input dove l'user inserisce il prezzo
     var discountBox = document.getElementById('coupon');
-
+    // raggiungo i box dove inserire i messaggi output
     var messageBox = document.getElementById('message-box');
     var discountMessageBox = document.getElementById('discound-message');
 
-
-    // array in cui pushare gli ingredienti checked
-    //var arrayChosenIngredients = []
 
     // variabile che contiene il calcolo del prezzo finale del burger
     var finalPrice = 50;
@@ -35,14 +30,11 @@ function onCalculate(event) {
 
         if (isChecked(singleIngredient)) {
 
-            //arrayChosenIngredients.push(singleIngredient);
-
             finalPrice += parseInt(singleIngredient.value);
         }
     }
 
     //DISCOUNT
-
     // salvo in una var il CODICE DISCOUNT inserito dall'utente 
     var userDiscountCode = discountBox.value.toUpperCase();
 
@@ -57,12 +49,10 @@ function onCalculate(event) {
             messageBox.innerHTML = "Your discount code is expired or invalid. <br> Please double check for typing errors."
             priceHere.textContent = finalPrice;
         }
-
     } else {
 
         priceHere.textContent = finalPrice;
         clearMessages(discountMessageBox, messageBox);
-
     }
 }
 
@@ -73,7 +63,6 @@ function isChecked(ingredient) {
         return false;
     }
     return true;
-
 }
 
 // funzione che verifica se è stato inserito un codice sconto 
@@ -92,7 +81,6 @@ function finalPriceDiscount(inizialAmount) {
     var finalPrice = inizialAmount - 10;
 
     return finalPrice;
-
 }
 
 //funzione che verifica il discount code con quelli accettati nell'array
@@ -112,11 +100,9 @@ function verifiedDiscountCode(discountCode) {
     return false;
 }
 
-
 // funzione che resetta i messaggi 
 function clearMessages(firstMsg, secondMsg) {
 
     firstMsg.innerHTML = "";
     secondMsg.innerHTML = "";
-
 }
