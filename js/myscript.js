@@ -87,9 +87,9 @@ function finalPriceDiscount(inizialAmount) {
 function verifiedDiscountCode(discountCode) {
 
     // array che contiene i DISCOUNT COUPONS ACCETTATI
-    var discountCoupons = ['APRILEDOLCEDORMIRE', 'HAMBURGERBUONITUTTOLANNO', 'ABOLIAMOLASENAPE', 'MAIOMESETUTTI I MESI']
+    var discountCoupons = ['APRILEDOLCEDORMIRE', 'HAMBURGERBUONITUTTOLANNO', 'ABOLIAMOLASENAPE', 'MAIOMESETUTTIIMESI']
 
-    for (var i = 0; i < discountCoupons.length; i++) {
+    for (var i=0; i < discountCoupons.length; i++) {
         var acceptedCode = discountCoupons[i];
 
         if (discountCode === acceptedCode) {
