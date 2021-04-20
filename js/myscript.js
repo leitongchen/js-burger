@@ -22,7 +22,6 @@ function onCalculate() {
     var messageBox = document.getElementById('message-box');
     var discountMessageBox = document.getElementById('discound-message');
 
-
     // variabile che contiene il calcolo del prezzo finale del burger
     var finalPrice = 50;
     for (var i = 0; i < arrayIngredients.length; i++) {
@@ -34,6 +33,9 @@ function onCalculate() {
         }
     }
 
+    // array che contiene i DISCOUNT COUPONS ACCETTATI
+    var discountCoupons = ['APRILEDOLCEDORMIRE', 'HAMBURGERBUONITUTTOLANNO', 'ABOLIAMOLASENAPE', 'MAIOMESETUTTIIMESI'];
+
     //DISCOUNT
     // salvo in una var il CODICE DISCOUNT inserito dall'utente 
     var userDiscountCode = discountBox.value.toUpperCase();
@@ -42,7 +44,7 @@ function onCalculate() {
 
         clearMessages(discountMessageBox, messageBox);
 
-        if (verifiedDiscountCode(userDiscountCode)) {
+        if (verifiedDiscountCode(userDiscountCode, discountCoupons)) {
             discountMessageBox.innerHTML = "$10 discount applied."
             priceHere.textContent = finalPriceDiscount(finalPrice);
         } else {
@@ -84,13 +86,11 @@ function finalPriceDiscount(inizialAmount) {
 }
 
 //funzione che verifica il discount code con quelli accettati nell'array
-function verifiedDiscountCode(discountCode) {
+function verifiedDiscountCode(discountCode, discountCouponsList) {
 
-    // array che contiene i DISCOUNT COUPONS ACCETTATI
-    var discountCoupons = ['APRILEDOLCEDORMIRE', 'HAMBURGERBUONITUTTOLANNO', 'ABOLIAMOLASENAPE', 'MAIOMESETUTTIIMESI']
 
-    for (var i=0; i < discountCoupons.length; i++) {
-        var acceptedCode = discountCoupons[i];
+    for (var i = 0; i < discountCouponsList.length; i++) {
+        var acceptedCode = discountCouponsList[i];
 
         if (discountCode === acceptedCode) {
 
